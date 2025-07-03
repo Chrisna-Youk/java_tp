@@ -79,4 +79,13 @@ public class AppTest {
         assertThat(grid.getCell(4, 2).isAlive()).isEqualTo(false);
 
     }
+
+    @Test
+    public void cell_boundaries_expect_dead() {
+        grid.getCell(0, 0).live();
+
+        grid.run();
+
+        assertThat(grid.getCell(0, 0).isAlive()).isEqualTo(false);
+    }
 }

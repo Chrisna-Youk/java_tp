@@ -24,6 +24,8 @@ public class Grid {
     }
 
     public int countNeighbours(Cell cell) {
+        if (cell.getX() == 0 || cell.getX() == width - 1 || cell.getY() == 0 || cell.getY() == height - 1) return 0;
+
         int cells = 0;
         if (getCell(cell.getX() - 1, cell.getY() - 1).isAlive()) {
             cells++;
@@ -68,8 +70,8 @@ public class Grid {
 
     public void run() {
         print();
-        for (int y = 1; y < height - 1; y++) {
-            for (int x = 1; x < width - 1; x++) {
+        for (int y = 0; y < height; y++) {
+            for (int x = 0; x < width; x++) {
                 Cell cell = grid[x][y];
                 int neighbours = countNeighbours(cell);
                 switch (neighbours) {
