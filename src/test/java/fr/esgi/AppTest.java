@@ -15,6 +15,17 @@ public class AppTest {
     }
 
     @Test
+    public void create_grid() {
+        grid = new Grid(5, 4);
+
+        grid.getCell(3, 2).live();
+
+        grid.run();
+
+        assertThat(grid.getCell(3, 2).isAlive()).isEqualTo(false);
+    }
+
+    @Test
     public void alive_less_2_neighbours_expect_dead() {
         grid.getCell(4, 2).live();
         grid.getCell(5, 2).live();
