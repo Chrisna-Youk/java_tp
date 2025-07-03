@@ -1,25 +1,28 @@
 package fr.esgi;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class AppTest {
 
-    @Test
-    public void testWithAssertJ() {
-        String test = "test";
-        assertThat(test).isNotNull();
-        assertThat(test).isNotBlank();
-        assertThat(test).isEqualTo("test");
+    private Grid grid;
+
+    @BeforeEach
+    void setup() {
+        grid = new Grid(8, 4);
     }
 
     @Test
-    public void testWithJunit5() {
-        String test = "test";
-        assertNotNull(test, "String value should not be null");
-        assertFalse(test.isEmpty(), "String value should not be empty");
-        assertEquals("test", test, "Strings must be equal");
+    public void alive_less_2_neighbours_expect_dead() {
+        grid.getCell(4, 2).live();
+        grid.getCell(5, 2).live();
+
+        grid.run();
+
+        assertThat(grid.getCell(4, 2).isAlive()).isEqualTo(false);
     }
+
+
 }
