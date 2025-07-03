@@ -24,5 +24,16 @@ public class AppTest {
         assertThat(grid.getCell(4, 2).isAlive()).isEqualTo(false);
     }
 
+    @Test
+    public void alive_more_3_neighbours_expect_dead() {
+        grid.getCell(2, 1).live();
+        grid.getCell(3, 1).live();
+        grid.getCell(1, 2).live();
+        grid.getCell(2, 2).live();
+        grid.getCell(3, 2).live();
 
+        grid.run();
+
+        assertThat(grid.getCell(2, 1).isAlive()).isEqualTo(false);
+    }
 }
