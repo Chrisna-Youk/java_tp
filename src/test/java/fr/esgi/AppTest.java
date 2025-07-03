@@ -46,4 +46,16 @@ public class AppTest {
         grid.run();
         assertThat(grid.getCell(2, 1).isAlive()).isEqualTo(true);
     }
+
+    @Test
+    public void dead_3_neighbours_expect_alive() {
+        Cell cellToVerify = grid.getCell(2, 2);
+        grid.getCell(3, 1).live();
+        grid.getCell(3, 3).live();
+        grid.getCell(1, 3).live();
+
+        grid.run();
+
+        assertThat(cellToVerify.isAlive()).isEqualTo(true);
+    }
 }
