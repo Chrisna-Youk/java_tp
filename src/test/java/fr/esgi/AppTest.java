@@ -69,4 +69,14 @@ public class AppTest {
 
         assertThat(cellToVerify.isAlive()).isEqualTo(true);
     }
+
+    @Test
+    public void one_cell_expect_dead() {
+        grid.getCell(4, 2).live();
+
+        grid.run();
+
+        assertThat(grid.getCell(4, 2).isAlive()).isEqualTo(false);
+
+    }
 }
